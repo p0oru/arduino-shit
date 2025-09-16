@@ -22,20 +22,21 @@ detect_port() {
 }
 
 menu() {
-  echo "Choose a sketch:"
-  echo "  1) LED_Sequence"
-  echo "  2) Binary_4LED_Display"
-  echo "  3) Flash_All_LEDs"
-  echo "  4) Red_LED_Only"
-  echo "  0) Exit"
+  local n
+  echo "Choose a sketch:" >&2
+  echo "  1) LED_Sequence" >&2
+  echo "  2) Binary_4LED_Display" >&2
+  echo "  3) Flash_All_LEDs" >&2
+  echo "  4) Red_LED_Only" >&2
+  echo "  0) Exit" >&2
   read -rp "Enter number: " n
   case "$n" in
-    1) echo "LED_Sequence" ;;
-    2) echo "Binary_4LED_Display" ;;
-    3) echo "Flash_All_LEDs" ;;
-    4) echo "Red_LED_Only" ;;
-    0) echo "" ;;
-    *) echo "invalid" ;;
+    1) printf "%s" "LED_Sequence" ;;
+    2) printf "%s" "Binary_4LED_Display" ;;
+    3) printf "%s" "Flash_All_LEDs" ;;
+    4) printf "%s" "Red_LED_Only" ;;
+    0) printf "%s" "" ;;
+    *) printf "%s" "invalid" ;;
   esac
 }
 
