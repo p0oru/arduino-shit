@@ -28,6 +28,7 @@ menu() {
   echo "  2) Binary_4LED_Display" >&2
   echo "  3) Flash_All_LEDs" >&2
   echo "  4) Red_LED_Only" >&2
+  echo "  5) All_Off (turn everything off)" >&2
   echo "  0) Exit" >&2
   read -rp "Enter number: " n
   case "$n" in
@@ -35,6 +36,7 @@ menu() {
     2) printf "%s" "Binary_4LED_Display" ;;
     3) printf "%s" "Flash_All_LEDs" ;;
     4) printf "%s" "Red_LED_Only" ;;
+    5) printf "%s" "All_Off" ;;
     0) printf "%s" "" ;;
     *) printf "%s" "invalid" ;;
   esac
@@ -54,7 +56,16 @@ main() {
 
   while true; do
     choice=$(menu)
-    [[ -z "$choice" ]] && echo "Bye" && exit 0
+    if [[ -z "$choice" ]]; then
+      if [[ -d "$ROOT_DIR/All_Off" ]]; then
+        read -rp "Turn LEDs off before exit? [Y/n] " ans || true
+        if [[ ! "$ans" =~ ^[Nn]$ ]]; then
+          upload "All_Off" "$port" || true
+        fi
+      fi
+      echo "Bye"
+      exit 0
+    fi
     [[ "$choice" == "invalid" ]] && echo "Invalid" && continue
     upload "$choice" "$port" || { echo "Upload failed"; continue; }
 
