@@ -1,0 +1,11 @@
+arduino-cli/
+arduino-cli.exe
+arduino-cli.zip
+**/.arduino*
+**/build*/
+**/*.hex
+**/*.elf
+__pycache__/
+*.pyc
+.DS_Store
+
