@@ -29,6 +29,7 @@ menu() {
   echo "  3) Flash_All_LEDs" >&2
   echo "  4) Red_LED_Only" >&2
   echo "  5) All_Off (turn everything off)" >&2
+  echo "  6) Hourly_Random_Flash" >&2
   echo "  0) Exit" >&2
   read -rp "Enter number: " n
   case "$n" in
@@ -37,6 +38,7 @@ menu() {
     3) printf "%s" "Flash_All_LEDs" ;;
     4) printf "%s" "Red_LED_Only" ;;
     5) printf "%s" "All_Off" ;;
+    6) printf "%s" "Hourly_Random_Flash" ;;
     0) printf "%s" "" ;;
     *) printf "%s" "invalid" ;;
   esac
